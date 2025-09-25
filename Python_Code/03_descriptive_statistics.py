@@ -6,14 +6,14 @@ import seaborn as sns
 
 df = pd.read_csv("uber_clean_data_2024.csv")
 
-# Numerical Summary
+# Numerical Summary (Quantity)
 num_cols = ["Booking Value", "Ride Distance", "Driver Ratings", "Customer Rating", "fare_per_km", "fare_per_min"]
-print("\nNumerical Summary\n")
+print("\nNumerical Summary")
 print(df[num_cols].describe().T) 
 
-# Categorical Summary
+# Categorical Summary (Quality)
 cat_cols = ["Booking Status", "Vehicle Type", "Payment Method"]
-print("\nCategorical Summary\n")
+print("\nCategorical Summary")
 for col in cat_cols:
     print(f"\nColumn: {col}")
     freq_table = pd.DataFrame({

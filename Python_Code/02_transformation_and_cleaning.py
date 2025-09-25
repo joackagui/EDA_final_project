@@ -4,7 +4,6 @@ import pandas as pd
 
 df = pd.read_csv("uber_data_2024.csv")
 
-
 df['pickup_datetime'] = pd.to_datetime(df['Date'] + " " + df['Time'], errors='coerce')
 
 df['hour'] = df['pickup_datetime'].dt.hour
@@ -41,4 +40,4 @@ df['fare_per_min'] = df['Booking Value'] / (df['Avg CTAT'] + 0.001)
 df = df.drop_duplicates()
 
 df.to_csv("uber_clean_data_2024.csv", index=False)
-print("Clean Dataset exported to'uber_clean.csv'")
+print("Clean Dataset exported to'uber_clean_2024.csv'")

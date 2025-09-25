@@ -1,4 +1,4 @@
-# Robust classification pipeline for Uber dataset
+# Classification models for Uber dataset
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split, cross_val_score, KFold
@@ -18,10 +18,20 @@ if "Is_Cancelled" not in df.columns:
     raise KeyError("Column 'Is_Cancelled' not found in dataset.")
 df["Is_Cancelled"] = df["Is_Cancelled"].astype(int)
 
+def frequency_table(column):
+    abs_counts = df[column].value_counts(dropna=False)
+    rel_counts = df[column].value_counts(normalize=True, dropna=False)
+    freq_table = pd.DataFrame({
+        "Absolute": abs_counts,
+        "Relative": rel_counts.round(4)
+    })
+    return freq_table
+
 # Print class distribution
-print("Class distribution (Is_Cancelled):")
-print(df["Is_Cancelled"].value_counts(normalize=False))
-print(df["Is_Cancelled"].value_counts(normalize=True))
+categorical_cols = ["Is_Cancelled", "Is_Weekend"]
+for col in categorical_cols:
+    print(f"\nDistribution of {col}:")
+    print(frequency_table(col))
 
 # Drop identifier/text columns not needed for modeling
 drop_candidates = [
@@ -92,6 +102,7 @@ for name, model in models.items():
     except Exception as e:
         print("Error during cross_val_score:", e)
         # continue trying to fit the model to show final evaluation
+
     # Train final model and evaluate on test set
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
