@@ -7,7 +7,7 @@ import seaborn as sns
 df = pd.read_csv("uber_clean_data_2024.csv")
 
 # Numerical Summary (Quantity)
-num_cols = ["Booking Value", "Ride Distance", "Driver Ratings", "Customer Rating", "fare_per_km", "fare_per_min"]
+num_cols = ["Booking Value", "Ride Distance", "Driver Ratings", "Customer Rating"]
 print("\nNumerical Summary")
 print(df[num_cols].describe().T) 
 
@@ -30,7 +30,7 @@ plt.suptitle("Histograms of Numerical Variables")
 plt.show()
 
 # Boxplots 
-fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(15, 10))
+fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(15, 10))
 axes = axes.flatten()
 
 for i, col in enumerate(num_cols):
