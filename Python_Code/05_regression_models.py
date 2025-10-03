@@ -48,7 +48,7 @@ kf = KFold(n_splits=5, shuffle=True, random_state=42)
 print("\nRegression Model Evaluation")
 
 for name, model in models.items():
-    print(f"\n🔹 {name}")
+    print(f"\n{name}")
     
     # Cross-validation
     cv_scores = cross_val_score(model, X_train, y_train, cv=kf, scoring="r2")

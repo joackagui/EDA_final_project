@@ -28,12 +28,12 @@ def plot_revenue_impact(df):
     labels = ['Completed Rides', 'Cancelled Rides']
     colors = ['#4CAF50', '#F44336']
 
-    wedges, texts, autotexts = ax.pie(values, labels=labels, autopct='%1.1f%%',
+    §, texts, autotexts = ax.pie(values, labels=labels, autopct='%1.1f%%',
                                      colors=colors, startangle=90)
     for autotext in autotexts:
         autotext.set_color('white')
         autotext.set_fontweight('bold')
-    ax.set_title('Revenue Impact', fontsize=14, fontweight='bold')
+    ax.set_title('Completed - Cancelled Rides', fontsize=14, fontweight='bold')
     plt.show()
 
 def plot_feature_importance(feature_importance: dict):
@@ -45,7 +45,7 @@ def plot_feature_importance(feature_importance: dict):
     ax.set_yticks(y_pos)
     ax.set_yticklabels(features)
     ax.set_xlabel('Importance')
-    ax.set_title('Key Predictive Features')
+    ax.set_title('Key Features for Prediction')
     for bar in bars:
         width = bar.get_width()
         ax.text(width + 0.01, bar.get_y() + bar.get_height()/2.,
